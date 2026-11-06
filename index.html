@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0165fc" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0165fc" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#0b60e9">
   <title>Connect Four – The once-a-month lunch club</title>
   <style>
     :root {
-      --blue: #0165fc;
+      /* FIX 1: Ein optisch identisches, aber für Grafikkarten stabiles sRGB-Blau */
+      --blue: #0b60e9; 
       --orange: #fc9800;
       --orange-d: #e08700;
       --slate: #1a1a1a;
@@ -17,11 +17,13 @@
       box-sizing: border-box;
     }
 
+    /* FIX 2: Wir zwingen die gesamte Seite in das GPU-Rendering. Das eliminiert die Streifenbildung! */
     html {
       scroll-behavior: smooth;
       scroll-padding-top: env(safe-area-inset-top, 0px);
-      background-color: #0165fc;
-      color-scheme: light;
+      background-color: var(--blue);
+      transform: translate3d(0, 0, 0);
+      will-change: transform;
     }
 
     *, *::before, *::after {
@@ -33,7 +35,8 @@
       color: #fff;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.6;
-      background-color: #0165fc;
+      background: transparent;
+      transform: translate3d(0, 0, 0);
     }
 
     section {
@@ -265,6 +268,151 @@
       margin: 0;
     }
 
+    form {
+      max-width: 520px;
+      margin: 32px auto 0;
+      text-align: left;
+    }
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      margin: 20px 0 8px;
+    }
+
+    input, select {
+      width: 100%;
+      font: inherit;
+      font-size: 1rem;
+      color: var(--slate);
+      background: #fff;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--orange);
+    }
+
+    .tip {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--orange);
+      color: var(--slate);
+      font-size: .8rem;
+      font-weight: 800;
+      cursor: help;
+      flex: none;
+    }
+
+    .tip span {
+      position: absolute;
+      left: 50%;
+      bottom: 130%;
+      transform: translateX(-50%);
+      width: 250px;
+      background: #fff;
+      color: var(--slate);
+      font-weight: 500;
+      font-size: .9rem;
+      line-height: 1.45;
+      padding: 12px 14px;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .15s;
+      z-index: 5;
+    }
+
+    .tip:hover span, .tip:focus span {
+      opacity: 1;
+    }
+
+    .check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-top: 22px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .check input {
+      width: 22px;
+      height: 22px;
+      margin-top: 2px;
+      accent-color: var(--orange);
+      flex: none;
+    }
+
+    .check b {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .check small {
+      display: block;
+      opacity: .9;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    form .btn {
+      width: 100%;
+      margin-top: 28px;
+    }
+
+    .err {
+      color: #fff;
+      background: rgba(0,0,0,.25);
+      border-radius: 10px;
+      padding: 10px 14px;
+      margin-top: 16px;
+      font-size: .95rem;
+    }
+
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .steps b {
+      width: 36px;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,.3);
+    }
+
+    .steps b.on {
+      background: var(--orange);
+    }
+
+    .success {
+      max-width: 520px;
+      margin: 32px auto 0;
+    }
+
+    .success h3 {
+      font-size: 1.5rem;
+    }
+
     footer {
       padding: 48px 24px;
       text-align: center;
@@ -346,3 +494,4 @@
 
 </body>
 </html>
+
