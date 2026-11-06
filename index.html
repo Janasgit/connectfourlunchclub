@@ -141,6 +141,12 @@ p {
   transform: scale(0);
   box-shadow: 0 4px 14px rgba(0,0,0,.2);
   animation-name: table;
+    /* FIX 1: Wir sagen der Grafikkarte genau, was sich ändert */
+  will-change: transform; 
+  
+  /* FIX 2: Wir ersetzen den schwarzen Schatten durch ein sauberes, dunkles Blau, 
+     das sich auf dem blauen Grund nicht in die Farbberechnung einmischt */
+  box-shadow: 0 4px 14px rgba(0, 43, 110, 0.4); 
 }
 .seats i {
   width: 18px;
