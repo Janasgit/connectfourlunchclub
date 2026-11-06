@@ -7,8 +7,7 @@
   <title>Connect Four – The once-a-month lunch club</title>
   <style>
     :root {
-      /* Das sichere sRGB-Blau für normale Monitore: */
-      --blue: #0A60E9; 
+      --blue: #0165fc;
       --orange: #fc9800;
       --orange-d: #e08700;
       --slate: #1a1a1a;
@@ -17,38 +16,30 @@
       box-sizing: border-box;
     }
 
-    /* Moderne Monitore mit weitem Farbraum bekommen das knallige P3-Blau */
-    @media (color-gamut: p3) {
-      :root {
-        --blue: color(display-p3 0.004 0.396 0.988);
-      }
-    }
-
+    /* Das einzige Element, das die Farbe bekommt – absolut flach, ohne Schnickschnack */
     html {
       scroll-behavior: smooth;
       scroll-padding-top: env(safe-area-inset-top, 0px);
-      background-color: var(--blue);
-      
-      /* FIX gegen die Streifen: Hintergrund darf sich nicht kacheln und füllt 100% aus */
-      background-attachment: fixed;
-      background-size: cover;
-      min-height: 100%;
+      background-color: #0165fc;
     }
 
     *, *::before, *::after {
       box-sizing: inherit;
     }
 
+    /* ALLES andere ist komplett transparent. Keine Farbschichten = Keine Streifen */
     body {
       margin: 0;
       color: #fff;
       font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.6;
+      background: transparent;
     }
 
     section {
       padding: 88px 24px;
       position: relative;
+      background: transparent;
     }
 
     .wrap {
@@ -87,6 +78,7 @@
       padding-top: 120px;
       padding-bottom: 110px;
       overflow-x: clip;
+      background: transparent;
     }
 
     .hero .sub {
@@ -452,7 +444,7 @@
       </div>
       <p class="sub">The once-a-month lunch club for local professionals.</p>
       <p class="tag">4 People. 1 Lunch. Zero awkward small talk.</p>
-      <a class="btn" href="https://docs.google.com/forms/d/e/1FAIpQLScHDZ0YxQG5U9GtzUix0K1wsqY4SEeTXeORoNdhEw-PNTGRig/viewform" target="_blank" rel="noopener">Claim Your Seat</a>
+      <a class="btn" href="https://google.com" target="_blank" rel="noopener">Claim Your Seat</a>
     </div>
   </section>
 
@@ -492,7 +484,7 @@
     <div class="wrap">
       <p>© 2026 Connect Four Lunch Club. All rights reserved.</p>
       <p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScHDZ0YxQG5U9GtzUix0K1wsqY4SEeTXeORoNdhEw-PNTGRig/viewform" target="_blank" rel="noopener">Apply Now</a>
+        <a href="https://google.com" target="_blank" rel="noopener">Apply Now</a>
       </p>
     </div>
   </footer>
